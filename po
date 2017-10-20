@@ -836,6 +836,7 @@ BRANCH_PI="feature/raspberry-pi"
 BINDIR=~/.po-util/bin
 DFUBAUDRATE=14400
 CWD="$PWD" # Global Current Working Directory variable
+OS="$(uname -s)"
 
 if [[ "$OS" == "Darwin" ]]; then
   for modem in /dev/cu.usbmodem*
