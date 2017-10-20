@@ -1,7 +1,7 @@
 #!/usr/bin/expect -f
 set timeout 10
 
-spawn ./po-util.sh config
+spawn ./po config
 
 expect -exact "Branch: "
 send -- "release/stable\n"
