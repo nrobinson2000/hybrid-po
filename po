@@ -945,20 +945,20 @@ Please install \"curl\" with your package manager.
     exit
   fi
 
-  if [ -f po-util.sh ];
+  if [ -f po ];
   then
     if [ "$CWD" != "$HOME" ];
     then
-      cp po-util.sh ~/po-util.sh #Replace ~/po-util.sh with one in current directory.
+      cp po ~/po #Replace ~/po with one in current directory.
     fi
-    chmod +x ~/po-util.sh
+    chmod +x ~/po
   else
-    if [ -f ~/po-util.sh ];
+    if [ -f ~/po ];
     then
-      chmod +x ~/po-util.sh
+      chmod +x ~/po
     else
-    curl -fsSLo ~/po-util.sh https://raw.githubusercontent.com/nrobinson2000/po-util/master/po-util.sh
-    chmod +x ~/po-util.sh
+    curl -fsSLo ~/po https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/po
+    chmod +x ~/po
     fi
   fi
 
@@ -968,17 +968,17 @@ Please install \"curl\" with your package manager.
     "
   else
     blue_echo "Creating \"po\" link in /usr/local/bin..."
-    sudo ln -s ~/po-util.sh /usr/local/bin/po
+    sudo ln -s ~/po /usr/local/bin/po
   fi
 
   blue_echo "Installing bash completion for po..."
-  sudo curl -fsSLo /etc/bash_completion.d/po https://raw.githubusercontent.com/nrobinson2000/homebrew-po/master/completion/po
+  sudo curl -fsSLo /etc/bash_completion.d/po https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/completion/po
 
   # create doc dir
   [ -d "$HOME/.po-util/doc" ] || mkdir -p "$HOME/.po-util/doc"  # If BASE_DIR does not exist, create it
 
   # Download po-util-README.md
-  curl -fsSLo ~/.po-util/doc/po-util-README.md https://raw.githubusercontent.com/nrobinson2000/po-util/master/po-util-README.md
+  curl -fsSLo ~/.po-util/doc/po-util-README.md https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/po-util-README.md
 
   # Check to see if we need to override the install directory.
   if [ "$2" ] && [ "$2" != $BASE_DIR ]
@@ -1158,7 +1158,7 @@ cd ..
 # Install custom-baud
 blue_echo "Installing custom-baud..."
 cd "$BINDIR" || exit
-curl -fsSLO https://github.com/nrobinson2000/po-util/releases/download/v1.5/custom-baud.zip
+curl -fsSLO https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/custom-baud.zip
 unzip -o custom-baud.zip
 cd custom-baud || exit
 make clean all
@@ -1183,12 +1183,12 @@ sudo npm install -g --unsafe-perm node-pre-gyp npm particle-cli
 
 # Install udev rules file
 blue_echo "Installing udev rule (requires sudo) ..."
-curl -fsSLO https://raw.githubusercontent.com/nrobinson2000/po-util/master/60-po-util.rules
+curl -fsSLO https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/60-po-util.rules
 sudo mv 60-po-util.rules /etc/udev/rules.d/60-po-util.rules
 
 # Install manpage
 blue_echo "Installing po manpage..."
-curl -fsSLO https://raw.githubusercontent.com/nrobinson2000/homebrew-po/master/man/po.1
+curl -fsSLO https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/man/po.1
 
 [ -d  "/usr/local/share/man/man1/" ] || sudo mkdir "/usr/local/share/man/man1/"
 
@@ -1240,7 +1240,7 @@ then
   [ -d "$HOME/.po-util/doc" ] || mkdir -p "$HOME/.po-util/doc"  # If BASE_DIR does not exist, create it
 
   # Download po-util-README.md
-  curl -fsSLo ~/.po-util/doc/po-util-README.md https://raw.githubusercontent.com/nrobinson2000/po-util/master/po-util-README.md
+  curl -fsSLo ~/.po-util/doc/po-util-README.md https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/po-util-README.md
 
   # Check to see if we need to override the install directory.
   if [ "$2" ] && [ "$2" != "$BASE_DIR" ]
@@ -1546,16 +1546,16 @@ then
       brew update
       brew upgrade po
     else
-      rm ~/po-util.sh
-      curl -fsSLo ~/po-util.sh https://raw.githubusercontent.com/nrobinson2000/po-util/master/po-util.sh
-      chmod +x ~/po-util.sh
-      curl -fsSLO https://raw.githubusercontent.com/nrobinson2000/homebrew-po/master/man/po.1
+      rm ~/po
+      curl -fsSLo ~/po https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/po
+      chmod +x ~/po
+      curl -fsSLO https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/man/po.1
       sudo mv po.1 /usr/local/share/man/man1/
       sudo mandb &> /dev/null
     fi
 
     rm -f ~/.po-util/doc/po-util-README.md
-    curl -fsSLo ~/.po-util/doc/po-util-README.md https://raw.githubusercontent.com/nrobinson2000/po-util/master/po-util-README.md
+    curl -fsSLo ~/.po-util/doc/po-util-README.md https://raw.githubusercontent.com/nrobinson2000/hybrid-po/master/po-util-README.md
     echo
     exit
 fi
